@@ -71,6 +71,7 @@ resource "helm_release" "nginx-ingress" {
   name       = "ingress"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
+  values     = [file("ingress.yml")]
 
   set = [
     {
