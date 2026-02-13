@@ -10,6 +10,21 @@ resource "aws_eks_cluster" "main" {
   }
 }
 
+resource "aws_launch_template" "main" {
+  name     = "eks-ng-lt"
+
+  block_device_mappings {
+    device_name = "/dev/xvda"
+
+    ebs {
+      volume_size = 20
+      encrypted   = true
+      kms_key_id  = var.kms
+    }
+  }
+
+}
+
 resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.main.name
   node_group_name = "main"
@@ -17,6 +32,11 @@ resource "aws_eks_node_group" "main" {
   subnet_ids      = aws_subnet.private[*].id
   instance_types  = ["t3.xlarge","t3.2xlarge"]
   capacity_type   = "SPOT"
+
+  launch_template {
+    name    = aws_launch_template.main.name
+    version = "$Latest"
+  }
 
   scaling_config {
     desired_size = 2
