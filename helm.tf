@@ -70,7 +70,7 @@ resource "helm_release" "nginx-ingress" {
 
   name       = "nginx-ingress"
   repository = "https://helm.nginx.com/stable"
-  chart      = "ingress-nginx"
+  chart      = "nginx-ingress"
   values     = [file("ingress.yml")]
 
   set = [
