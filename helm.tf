@@ -68,8 +68,8 @@ resource "helm_release" "nginx-ingress" {
 
   depends_on = [null_resource.kubeconfig]
 
-  name       = "ingress"
-  repository = "https://kubernetes.github.io/ingress-nginx"
+  name       = "nginx-ingress"
+  repository = "oci://ghcr.io/nginxinc/charts/nginx-ingress"
   chart      = "ingress-nginx"
   values     = [file("ingress.yml")]
 
