@@ -152,7 +152,6 @@ resource "helm_release" "istiod" {
   chart            = "istiod"
   namespace        = "istio-system"
   create_namespace = true
-  version = "1.25"
 }
 
 resource "null_resource" "kiali" {
