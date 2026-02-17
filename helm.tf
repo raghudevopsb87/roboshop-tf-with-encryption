@@ -177,7 +177,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: kiali-dev.rdevopsb83.online
+  - host: kiali-dev.rdevopsb87.online
     http:
       paths:
       - backend:
