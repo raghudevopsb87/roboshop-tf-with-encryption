@@ -190,3 +190,22 @@ EOK
 EOF
   }
 }
+
+resource "null_resource" "app-namespace" {
+  depends_on = [
+    null_resource.kubeconfig,
+    null_resource.kiali
+  ]
+  provisioner "local-exec" {
+    command = <<EOF
+kubectl apply -f - <<EOK
+apiVersion: v1
+kind: Ingress
+metadata:
+  labels:
+    istio-injection: enabled
+  name: app
+EOK
+EOF
+  }
+}
