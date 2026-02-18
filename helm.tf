@@ -200,7 +200,7 @@ resource "null_resource" "app-namespace" {
     command = <<EOF
 kubectl apply -f - <<EOK
 apiVersion: v1
-kind: Ingress
+kind: Namespace
 metadata:
   labels:
     istio-injection: enabled
